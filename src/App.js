@@ -1,25 +1,89 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Home from "./pages/Home";
+import Cloud from "./pages/Cloud";
+
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
+import {
+  Drawer,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Container,
+  Typography,
+} from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  drawerPaper: { width: "inherit" },
+  link: {
+    textDecoration: "none",
+    color: theme.palette.text.primary,
+  },
+}));
 
 function App() {
+  const classes = useStyles();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <a className="navbar-brand" href="#">
+            Hitech Adda
+          </a>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div className="navbar-nav">
+              <a className="nav-link active" href="#">
+                <Link to="/">Home</Link>{" "}
+                <span className="sr-only">(current)</span>
+              </a>
+              <a className="nav-link" href="#">
+                Features
+              </a>
+              <a className="nav-link" href="#">
+                Pricing
+              </a>
+              <a
+                className="nav-link disabled"
+                href="#"
+                tabindex="-1"
+                aria-disabled="true"
+              >
+                Disabled
+              </a>
+            </div>
+          </div>
+        </nav>
+
+        <Switch>
+          <Route exact path="/">
+            <Cloud />
+          </Route>
+          <Route exact path="/stocklist">
+            <Container>
+              <Typography variant="h3" gutterBottom>
+                About
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                Akshara
+              </Typography>
+            </Container>
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
