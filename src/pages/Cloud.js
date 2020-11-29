@@ -7,6 +7,8 @@ export class Cloud extends Component {
   state = {
     stocks: [],
     prices: [],
+    stocksdown: [],
+    pricesdown: [],
   };
 
   componentDidMount() {
@@ -28,6 +30,18 @@ export class Cloud extends Component {
       this.setState({ stocks: [...stocks, this.state.stocks] });
       this.setState({ prices: [...prices, this.state.prices] });
     });
+
+    axios.get(`https://hitechadda.com/getclouddown`).then((res) => {
+      const webdata = res.data;
+      let stocks = webdata.stocks.split(",");
+      let prices = webdata.trigger_prices.split(",");
+      this.setState({
+        stocksdown: [],
+        pricesdown: [],
+      });
+      this.setState({ stocksdown: [...stocks, this.state.stocksdown] });
+      this.setState({ pricesdown: [...prices, this.state.pricesdown] });
+    });
   }
 
   render() {
@@ -44,7 +58,9 @@ export class Cloud extends Component {
 
         <div className="row">
           <div className="col">
-            <h3>Stock Name</h3>
+            <h3 style={{ color: "green" }}>
+              Above Cloud : {this.state.stocks.length}
+            </h3>
             <ul className="list-group">
               {this.state.stocks.map((stock) => (
                 <li className="list-group-item">{stock}</li>
@@ -52,10 +68,12 @@ export class Cloud extends Component {
             </ul>
           </div>
           <div className="col">
-            <h3>Price</h3>
+            <h3 style={{ color: "red" }}>
+              Below Cloud : {this.state.stocksdown.length}
+            </h3>
             <ul className="list-group">
-              {this.state.prices.map((price) => (
-                <li className="list-group-item">{price}</li>
+              {this.state.stocksdown.map((stockdown) => (
+                <li className="list-group-item">{stockdown}</li>
               ))}
             </ul>
           </div>
