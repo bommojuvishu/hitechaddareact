@@ -18,6 +18,23 @@ export class Cloud extends Component {
     }, 30000);
   }
 
+  myChangeHandler = (event) => {
+    const re = /^[0-9\b]+$/;
+
+    // if value is not blank, then test the regex
+
+    if (event.target.value === "" || re.test(event.target.value)) {
+      // this.setState({ value: event.target.value });
+      console.log(event.target.value);
+      this.setState({ username: event.target.value });
+    } else {
+      console.log(event.target.value.slice(0, -1));
+      var result = event.target.value.slice(0, -1);
+      alert("INVALID VALUE");
+      this.setState({ username: result });
+    }
+  };
+
   getstockdata() {
     axios.get(`https://hitechadda.com/getcloudabove`).then((res) => {
       const webdata = res.data;
@@ -42,24 +59,44 @@ export class Cloud extends Component {
       this.setState({ stocksdown: [...stocks, this.state.stocksdown] });
       this.setState({ pricesdown: [...prices, this.state.pricesdown] });
     });
+
+    axios
+      .get(
+        `http://api.openweathermap.org/data/2.5/weather?q=hyderabad&appid=2f6b6dd1e09f46e713c41dc68e27faea`
+      )
+      .then((res) => {
+        const webdata = res.data;
+        console.log(webdata.coord.lat);
+        this.setState({ long: webdata.coord.lon });
+        this.setState({ lat1: webdata.coord.lat });
+      });
   }
 
   render() {
     return (
       <div className="container">
         <div className="jumbotron">
-          <h1 className="display-4">Nifty 50 Inchimoku Cloud</h1>
+          <h1 className="display-4">Nifty 50 Ichimoku Cloud</h1>
           <p className="lead"></p>
-          the stocks that are above the Inchimoku Cloud
+          the stocks that are above/below the Ichimoku Cloud
           <hr className="my-4" />
           the page refreshs for every 5 mins
           <p></p>
+        </div>
+        <div className="row">
+          <div className="col">
+            {this.state.stocks.length < this.state.stocksdown.length ? (
+              <h1 style={{ color: "red", textAlign: "center" }}>Trend DOWN</h1>
+            ) : (
+              <h1 style={{ color: "green", textAlign: "center" }}>Trend UP</h1>
+            )}
+          </div>
         </div>
 
         <div className="row">
           <div className="col">
             <h3 style={{ color: "green" }}>
-              Above Cloud : {this.state.stocks.length}
+              Above Cloud : {this.state.stocks.length - 1}
             </h3>
             <ul className="list-group">
               {this.state.stocks.map((stock) => (
@@ -69,13 +106,25 @@ export class Cloud extends Component {
           </div>
           <div className="col">
             <h3 style={{ color: "red" }}>
-              Below Cloud : {this.state.stocksdown.length}
+              Below Cloud : {this.state.stocksdown.length - 1}
             </h3>
             <ul className="list-group">
               {this.state.stocksdown.map((stockdown) => (
                 <li className="list-group-item">{stockdown}</li>
               ))}
             </ul>
+            <h1>{JSON.stringify(Math.round(this.state.long))}</h1>
+            <h1>{JSON.stringify(Math.round(this.state.lat1))}</h1>
+
+            <form>
+              <h1>Hello {this.state.username}</h1>
+              <p>Enter your name:</p>
+              <input
+                type="text"
+                value={this.state.username}
+                onChange={this.myChangeHandler}
+              />
+            </form>
           </div>
         </div>
       </div>
