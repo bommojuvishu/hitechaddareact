@@ -113,18 +113,6 @@ export class Cloud extends Component {
                 <li className="list-group-item">{stockdown}</li>
               ))}
             </ul>
-            <h1>{JSON.stringify(Math.round(this.state.long))}</h1>
-            <h1>{JSON.stringify(Math.round(this.state.lat1))}</h1>
-
-            <form>
-              <h1>Hello {this.state.username}</h1>
-              <p>Enter your name:</p>
-              <input
-                type="text"
-                value={this.state.username}
-                onChange={this.myChangeHandler}
-              />
-            </form>
           </div>
         </div>
       </div>
