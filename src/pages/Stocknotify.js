@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import MaterialTable from "material-table";
 import { makeStyles } from "@material-ui/core/styles";
 import { useEffect } from "react";
@@ -17,19 +17,41 @@ const useStyles = makeStyles((theme) => ({
 
 function Stocknotify() {
   const classes = useStyles();
+  // var result;
+  const [result, setResult] = useState(0);
 
-  // useEffect(async () => {
-  //   console.log("URLDATA testing");
-  //   var url =
-  //     "http://api.openweathermap.org/data/2.5/weather?q=hyderabad&appid=2f6b6dd1e09f46e713c41dc68e27faea";
+  useEffect(() => {
+    var url = "https://hitechadda.com/getmoment";
 
-  //   axios.get(url).then((res) => {
-  //     const webdata = res.data;
-  //     console.log("URLDATA", webdata);
-  //   });
-  // });
+    axios.get(url).then((res) => {
+      console.log("URLDATA testing", result);
+      const webdata = res.data;
+      console.log("URLDATA", res.data);
 
-  return <div className="container">Stocknotify</div>;
+      setResult(res.data);
+      console.log("RESULT", result);
+    });
+  }, []);
+
+  return (
+    <div className="container">
+      Nifty 500 Momentum Trading Trading strategy one month ,three months ,six
+      months , one year returns Higher the Score , Higher the Momentum
+      {result == 0 ? (
+        <h1>No Data</h1>
+      ) : (
+        <MaterialTable
+          title="Basic Search Preview"
+          columns={result.cols}
+          data={result.data}
+          options={{
+            search: true,
+            sorting: true,
+          }}
+        />
+      )}
+    </div>
+  );
 }
 
 export default Stocknotify;
