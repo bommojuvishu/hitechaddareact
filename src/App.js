@@ -51,10 +51,10 @@ function App() {
                 <span className="sr-only">(current)</span>
               </a>
               <a className="nav-link" href="#">
-                Features
+                {/* Features */}
               </a>
               <a className="nav-link" href="#">
-                Pricing
+                {/* Pricing */}
               </a>
               <a
                 className="nav-link disabled"
@@ -62,7 +62,7 @@ function App() {
                 tabindex="-1"
                 aria-disabled="true"
               >
-                Disabled
+                {/* Disabled */}
               </a>
             </div>
           </div>

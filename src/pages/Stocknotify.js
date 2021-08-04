@@ -35,8 +35,10 @@ function Stocknotify() {
 
   return (
     <div className="container">
-      Nifty 500 Momentum Trading Trading strategy one month ,three months ,six
-      months , one year returns Higher the Score , Higher the Momentum
+      Nifty 500 Momentum: shows the stocks that has consistent Momentum <br />
+      Higher the Score , Higher the Momentum
+      <br />
+      strategy lists one month ,three months,six months , one year returns
       {result == 0 ? (
         <h1>No Data</h1>
       ) : (
