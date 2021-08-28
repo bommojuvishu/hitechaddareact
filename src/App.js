@@ -16,6 +16,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import AboveCloud from "./pages/AboveCloud";
+import PercentileRSI from "./pages/PercentileRSI";
 
 const useStyles = makeStyles((theme) => ({
   drawerPaper: { width: "inherit" },
@@ -55,7 +56,7 @@ function App() {
                 <Link to="/abovecloud">Above Cloud</Link>{" "}
               </a>
               <a className="nav-link" href="#">
-                Pricing
+                <Link to="/percentilersi">Percentile RSI</Link>{" "}
               </a>
               <a
                 className="nav-link disabled"
@@ -75,6 +76,9 @@ function App() {
           </Route>
           <Route exact path="/abovecloud">
             <AboveCloud />
+          </Route>
+          <Route exact path="/percentilersi">
+            <PercentileRSI />
           </Route>
           <Route exact path="/stocklist">
             <Container>
