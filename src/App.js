@@ -15,6 +15,7 @@ import {
   Container,
   Typography,
 } from "@material-ui/core";
+import AboveCloud from "./pages/AboveCloud";
 
 const useStyles = makeStyles((theme) => ({
   drawerPaper: { width: "inherit" },
@@ -31,7 +32,7 @@ function App() {
       <div>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <a className="navbar-brand" href="#">
-            Hitech Adda
+            <Link to="/">Hitech Adda</Link>{" "}
           </a>
           <button
             className="navbar-toggler"
@@ -51,10 +52,10 @@ function App() {
                 <span className="sr-only">(current)</span>
               </a>
               <a className="nav-link" href="#">
-                {/* Features */}
+                <Link to="/abovecloud">Above Cloud</Link>{" "}
               </a>
               <a className="nav-link" href="#">
-                {/* Pricing */}
+                Pricing
               </a>
               <a
                 className="nav-link disabled"
@@ -71,6 +72,9 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Stocknotify />
+          </Route>
+          <Route exact path="/abovecloud">
+            <AboveCloud />
           </Route>
           <Route exact path="/stocklist">
             <Container>

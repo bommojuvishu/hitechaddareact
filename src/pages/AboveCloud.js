@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Stocknotify() {
+function AboveCloud() {
   const classes = useStyles();
   // var result;
   const [result, setResult] = useState(0);
@@ -26,20 +26,20 @@ function Stocknotify() {
     axios.get(url).then((res) => {
       console.log("URLDATA testing", result);
       const webdata = res.data;
-      console.log("URLDATA", res.data);
-      res.data.cols[7].hidden = true;
+      //   console.log("URLDATA", res.data);
+      res.data.cols[1].hidden = true;
+      console.log("RESULT", res.data.cols);
 
       setResult(res.data);
-      console.log("RESULT", result);
     });
   }, []);
 
   return (
     <div className="container">
-      Nifty 500 Momentum: shows the stocks that has consistent Momentum <br />
+      Nifty 500 Above Cloud: shows the list of stocks that are above the
+      ichimoku cloud for maximum number of days <br />
       Higher the Score , Higher the Momentum
       <br />
-      strategy lists one month ,three months,six months , one year returns
       {result == 0 ? (
         <h1>No Data</h1>
       ) : (
@@ -50,8 +50,6 @@ function Stocknotify() {
           options={{
             search: true,
             sorting: true,
-            exportButton: true,
-            pageSizeOptions: [10, 25, 50, 100],
           }}
         />
       )}
@@ -59,4 +57,4 @@ function Stocknotify() {
   );
 }
 
-export default Stocknotify;
+export default AboveCloud;
