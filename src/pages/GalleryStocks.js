@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useEffect } from "react";
 import axios from "axios";
 import _ from "lodash";
-import GalleryCustom from "../components/GalleryCustom";
+import { Image } from "antd";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,14 +44,14 @@ function GalleryStocks() {
 
   return (
     <div className="container">
-      {Isloading
-        ? "still loading"
-        : stocknames.map((val) => {
-            val = "https://hitechadda.com/images/" + val + ".png";
-            return (
-              <img src={val} class="img-responsive" alt="Cinque Terre"></img>
-            );
-          })}
+      <Image.PreviewGroup>
+        {Isloading
+          ? "still loading"
+          : stocknames.map((val) => {
+              val = "https://hitechadda.com/images/" + val + ".png";
+              return <Image width={200} src={val} />;
+            })}
+      </Image.PreviewGroup>
     </div>
   );
 }
