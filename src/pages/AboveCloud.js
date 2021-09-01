@@ -3,6 +3,7 @@ import MaterialTable from "material-table";
 import { makeStyles } from "@material-ui/core/styles";
 import { useEffect } from "react";
 import axios from "axios";
+import _ from "lodash";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,7 +29,15 @@ function AboveCloud() {
       const webdata = res.data;
       //   console.log("URLDATA", res.data);
       res.data.cols[1].hidden = true;
-      console.log("RESULT", res.data.cols);
+      res.data.cols[2].hidden = true;
+      res.data.cols[3].hidden = true;
+      res.data.cols[4].hidden = true;
+      res.data.cols[5].hidden = true;
+      res.data.cols[8].hidden = true;
+
+      res.data.data = _.orderBy(res.data.data, ["AboveCloud"], ["desc"]);
+
+      console.log("RESULT", res.data);
 
       setResult(res.data);
     });
@@ -38,7 +47,7 @@ function AboveCloud() {
     <div className="container">
       Nifty 500 Above Cloud: shows the list of stocks that are above the
       ichimoku cloud for maximum number of days <br />
-      Higher the Score , Higher the Momentum
+      Higher the Score , Higher the number of days
       <br />
       {result == 0 ? (
         <h1>No Data</h1>

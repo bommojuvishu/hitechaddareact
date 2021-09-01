@@ -17,6 +17,7 @@ import {
 } from "@material-ui/core";
 import AboveCloud from "./pages/AboveCloud";
 import PercentileRSI from "./pages/PercentileRSI";
+import GalleryStocks from "./pages/GalleryStocks";
 
 const useStyles = makeStyles((theme) => ({
   drawerPaper: { width: "inherit" },
@@ -49,7 +50,7 @@ function App() {
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div className="navbar-nav">
               <a className="nav-link active" href="#">
-                <Link to="/">Home</Link>{" "}
+                <Link to="/">Momentum Strategy</Link>{" "}
                 <span className="sr-only">(current)</span>
               </a>
               <a className="nav-link" href="#">
@@ -57,6 +58,9 @@ function App() {
               </a>
               <a className="nav-link" href="#">
                 <Link to="/percentilersi">Percentile RSI</Link>{" "}
+              </a>
+              <a className="nav-link" href="#">
+                <Link to="/gallery">Stocks Thumbnail</Link>{" "}
               </a>
               <a
                 className="nav-link disabled"
@@ -71,7 +75,7 @@ function App() {
         </nav>
 
         <Switch>
-          <Route exact path="/">
+          <Route exact path="/stocklist">
             <Stocknotify />
           </Route>
           <Route exact path="/abovecloud">
@@ -80,14 +84,40 @@ function App() {
           <Route exact path="/percentilersi">
             <PercentileRSI />
           </Route>
-          <Route exact path="/stocklist">
+          <Route exact path="/gallery">
+            <GalleryStocks />
+          </Route>
+          <Route exact path="/">
             <Container>
-              <Typography variant="h3" gutterBottom>
-                About
-              </Typography>
-              <Typography variant="body1" gutterBottom>
-                Akshara
-              </Typography>
+              <h3>
+                The Website offers different strategies . the data updates for
+                every day at 5 PM IST on NIFTY500 stocks list{" "}
+              </h3>
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <Link to="/stocklist">
+                    Momentum Strategy : the stocks that has consistent Momentum{" "}
+                  </Link>
+                </li>
+                <li class="list-group-item">
+                  <Link to="/abovecloud">
+                    Above Cloud : list of stocks that are above the ichimoku
+                    cloud for maximum number of days
+                  </Link>
+                </li>
+                <li class="list-group-item">
+                  <Link to="/percentilersi">
+                    Percentile RSI : stocks RSI if it is highest or lowest for
+                    past 6 months.
+                  </Link>
+                </li>
+                <li class="list-group-item">
+                  <Link to="/gallery">
+                    Stocks Gallery : List of Stocks One year graph whose RSI is
+                    low
+                  </Link>
+                </li>
+              </ul>
             </Container>
           </Route>
         </Switch>

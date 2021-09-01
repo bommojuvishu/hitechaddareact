@@ -27,7 +27,7 @@ function Stocknotify() {
       console.log("URLDATA testing", result);
       const webdata = res.data;
       console.log("URLDATA", res.data);
-      res.data.cols[7].hidden = true;
+      // res.data.cols[7].hidden = true;
 
       setResult(res.data);
       console.log("RESULT", result);
