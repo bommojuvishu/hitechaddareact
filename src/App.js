@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Home from "./pages/Home";
 import Cloud from "./pages/Cloud";
 import Stocknotify from "./pages/Stocknotify";
+import Returns from "./pages/Returns";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
@@ -87,6 +88,9 @@ function App() {
           <Route exact path="/gallery">
             <GalleryStocks />
           </Route>
+          <Route exact path="/returns">
+            <Returns />
+          </Route>
           <Route exact path="/">
             <Container>
               <h3>
@@ -115,6 +119,12 @@ function App() {
                   <Link to="/gallery">
                     Stocks Gallery : List of Stocks One year graph whose RSI is
                     low
+                  </Link>
+                </li>
+                <li class="list-group-item">
+                  <Link to="/returns">
+                    Stocks returns : check the returns for stocks in the time
+                    range
                   </Link>
                 </li>
               </ul>

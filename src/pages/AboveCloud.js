@@ -25,7 +25,6 @@ function AboveCloud() {
     var url = "https://hitechadda.com/getmoment";
 
     axios.get(url).then((res) => {
-      console.log("URLDATA testing", result);
       const webdata = res.data;
       //   console.log("URLDATA", res.data);
       res.data.cols[1].hidden = true;
@@ -33,7 +32,7 @@ function AboveCloud() {
       res.data.cols[3].hidden = true;
       res.data.cols[4].hidden = true;
       res.data.cols[5].hidden = true;
-      res.data.cols[8].hidden = true;
+      // res.data.cols[8].hidden = true;
 
       res.data.data = _.orderBy(res.data.data, ["AboveCloud"], ["desc"]);
 
